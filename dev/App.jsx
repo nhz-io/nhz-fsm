@@ -71,7 +71,7 @@ export default class Main extends Base {
       accent1Color: Colors.deepOrange500
     });
     newMuiTheme = ThemeManager.modifyRawThemeFontFamily(newMuiTheme, {
-      fontFamily: 'Comfortaa, sans-serif'
+      fontFamily: 'Raleway, sans-serif'
     });
     this.setState({muiTheme: newMuiTheme});
   }
