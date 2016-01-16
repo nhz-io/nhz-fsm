@@ -1,6 +1,7 @@
 env:
   global:
   - GH_REF: github.com/nhz-io/repot.git
+  - secure: EgJVZ7tI7NUmDx5I6aRWUNbXo8BfeKzd06XFHyzy/Vod8+ljjiqXLbu4dsS3cNeh2kYFkuFyRtR6Rhv08Q3hwH+IKC71W70HH9xBSpxtpuIU7nmVGHz89PWCicU6r++oZXT6L4TPuqhtsDbKIBLXMUETRg4H9VVuZm0QTxkVRlcWWyjYmB7qPEU5YBnPlB6MNxfPcCEfgAiemd8jDJ6SnpXNsZHf+49ElWRCl1AkdGdi52RrbbbcsjjRGIOF6dHG9M0Oqg6XLTgjYa69GXmlWVZtqgJV4ezaHn4r7PyBH1lss6c+r1UZLLDVvfS8aDh1IyXLeMiXiywPb2fTA4XX9WKkAERuvta7n5TbHsQq9mE/JuWBJrevVkPZS3HHksxKhuYtEyjpw0l81plMDMdvOPy1N9j6Wbm/YrCVQlAHwfzIuL9HOP4izNuiKATLey2pNBUh4oqJ0mhs4EErWsNkQqw2EGjzTHrWtqhW5fRs3+gO/O7YT6biTrAHFaL4UQ1P6lL16XSI1rsKU+b2FKpbK+uHDtDMNrjs4seQaCRRRwqkyrmezb66WGtB8T4Pi3GEtCw4rlBxbkOoA15bGXnB+B8+BSHWo1qAnsc16GPu6wgsjNK+Xwsf6SmNWcq8aHJMW1xB8mQYSW2VY1q1KGoajzXrPV0NFKL/By+GZA+2c8s=
 language: node_js
 node_js:
 - '0.11'
@@ -12,7 +13,10 @@ script: npm run-script dist
 deploy:
   provider: npm
   email: dev@nhz.io
+  api_key:
+    secure: BjnyKJNLnEm4SFDKrNQfl4O0+7sx5KHZrU8074P7vm6ehPZj/Cpn7KK4DFz6E020HPG9iyNGEW8Ix/uPbP8iq0/evYyJ7vO3Vju3t8SL1MxeRO0uw9exBq/cp6XfLTPSNafP68mdgXQDwunrxM8NqJncNPmnfzgydB4l4R5pAG+fY9U0pzS0Ar8GPPULLfJnHt1jQvC0tZNN5OCGLCM543Np62WOhGz/bFk7c+fZNVqiM48khVpogGlDrDvQjYluli8F9LQcPb1hM6kKmuwVQ0IfL8vqVPgYcrGMiUAhna1B4qpYubBuWXNn1OvK2GldtI5cvuvPhA8kaevfPVbYrWq6Mb4lJyYM/6Rlmm9uzUhFMQ4anLpFd/QHmWqrMgK8C8sV5VPEjxsMcr94Vm9MhrkVgztEtC7En1Rmri9BcihwC0Xr4MiJkc2EFyKvN1C8g623Lb1f8WiXbjVPApDOuxZotwuEktVyXVlfij/xfjSFhUgZRfXmU7bZ2pV/quw8uMo+YKqOl69k4huWnxT/MAMDQiyqsPra5JoOLj7Xwf2FYpU3dVNQXZd67yrVeeWs/UCH13ohSyBCMLZJawyVuaZQ04/bZ5V2M/SGH3HreFj/Wo/HjG7YzlwEm7Yia1Tk+oyEViNoVmUnavI+Dvfg+6upsB3iwu+9h0HMtLLh0mY=
   on:
+    repo: nhz-io/nhz-fsm
     branch: master
 after_deploy:
 - bash ./gh-pages.sh
