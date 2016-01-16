@@ -14,6 +14,8 @@ import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
 import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
 import AppBar from 'material-ui/lib/app-bar';
 import TextField from 'material-ui/lib/text-field';
+import IconButton from 'material-ui/lib/icon-button';
+
 
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
@@ -43,6 +45,7 @@ export default class Main extends Base {
     super(props);
     this.state = {
       muiTheme: ThemeManager.getMuiTheme(LightRawTheme),
+      repoName: 'nhz-fsm',
       appTitle: 'State Machine Editor',
       initialStateTitle: 'Initial State',
       eventTitle: 'Event',
@@ -54,9 +57,22 @@ export default class Main extends Base {
 
   componentWillMount() {
     let newMuiTheme = ThemeManager.modifyRawThemePalette(this.state.muiTheme, {
+      primary1Color: Colors.blueGrey500,
+      primary2Color: Colors.blueGrey700,
+      primary3Color: Colors.lightBlack,
+      accent1Color: Colors.pinkA200,
+      accent2Color: Colors.grey100,
+      accent3Color: Colors.grey500,
+      textColor: Colors.darkBlack,
+      alternateTextColor: Colors.white,
+      canvasColor: Colors.white,
+      borderColor: Colors.grey300,
+      pickerHeaderColor: Colors.cyan500,
       accent1Color: Colors.deepOrange500
     });
-
+    newMuiTheme = ThemeManager.modifyRawThemeFontFamily(newMuiTheme, {
+      fontFamily: 'Comfortaa, sans-serif'
+    });
     this.setState({muiTheme: newMuiTheme});
   }
 
@@ -69,7 +85,17 @@ export default class Main extends Base {
     const cardWidth = '70%';
     return(
       <div className='app-container'>
-        <AppBar title={state.appTitle} zDepth={1}/>
+        <AppBar
+          zDepth={1}
+          showMenuIconButton={false}
+          title={[
+            <span>{state.repoName}</span>,
+            <IconButton style={{padding:0}} iconStyle={{color:'rgba(255,255,255,0.9)', position:'relative', top:'2px'}}>
+              <i className="mega-octicon octicon-mark-github" />
+            </IconButton>,
+            <span>{state.appTitle}</span>
+          ]}
+        />
         <Paper zDepth={1}>
           <Toolbar>
             <ToolbarGroup>

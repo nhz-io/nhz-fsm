@@ -66,16 +66,16 @@ if(TARGET === 'start') {
           include: [ SRC_PATH, DEV_PATH ]
         },
         {
-          test: /.*\.(gif|png|jpe?g|svg)$/i,
+          test: /.*\.(gif|png|jpe?g|woff|ttf|svg|eot)(\?.+)?$/i,
           loaders: [
             'file?hash=sha512&digest=hex&name=[hash].[ext]'
           ],
-          include: [ SRC_PATH, DEV_PATH ]
+          include: [ SRC_PATH, DEV_PATH, path.resolve(ROOT_PATH, 'node_modules') ]
         },
         {
           test: /\.scss$/,
           loaders: [ 'style', 'css', 'sass' ],
-          include: [ SRC_PATH, DEV_PATH ]
+          include: [ SRC_PATH, DEV_PATH, path.resolve(ROOT_PATH, 'node_modules') ]
         }
       ]
     },
@@ -183,7 +183,7 @@ if(TARGET === 'dist-browser') {
     output: {
       path: DIST_PATH,
       filename: "[name].js",
-      libraryTarget: 'this',      
+      libraryTarget: 'this',
     },
 
     module: {
