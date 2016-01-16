@@ -1,6 +1,6 @@
 {
   "name": "nhz-fsm",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "nhz-fsm",
   "repository": {
     "type": "git",
@@ -11,13 +11,11 @@
   },
   "homepage": "https://github.com/nhz-io/nhz-fsm",
   "author": "Ishi Ruy <dev@nhz.io>",
-  "contributors": [
-    {
-      "name": "Ishi Ruy",
-      "email": "dev@nhz.io",
-      "url": "https://github.com/nhz-io"
-    }
-  ],
+  "contributors": [{
+    "name": "Ishi Ruy",
+    "email": "dev@nhz.io",
+    "url": "https://github.com/nhz-io"
+  }],
   "keywords": [
     "nhz-io",
     "nhz.io",
