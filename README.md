@@ -9,8 +9,8 @@ npm install --save nhz-fsm
 
 ## Browser
 
-* [State Machine nhz-fsm.min.js](fsm-browser-dist)
-* [Generator nhz-fsm-generator.min.js](generator-browser-dist)
+* [nhz-fsm.min.js][fsm-browser-dist]
+* [nhz-fsm-generator.min.js][generator-browser-dist]
 
 ## Build
 ```
@@ -25,7 +25,7 @@ npm dist
 ```
 
 ## WEBSITE
-http://nhz-io.github.io/nhz-fsm
+https://nhz-io.github.io/nhz-fsm
 
 ## LICENSE
 
@@ -40,7 +40,7 @@ http://nhz-io.github.io/nhz-fsm
 [npm-image]: https://img.shields.io/npm/v/nhz-fsm.svg?style=flat
 [npm-url]: https://www.npmjs.com/package/nhz-fsm
 
-[gh-pages]: http://nhz-io.github.io/nhz-fsm
+[gh-pages]: https://nhz-io.github.io/nhz-fsm
 
-[fsm-browser-dist]: dist/nhz-fsm.min.js
-[generator-browser-dist]: dist/nhz-fsm-generator.min.js
+[fsm-browser-dist]: https://raw.githubusercontent.com/nhz-io/nhz-fsm/master/dist/nhz-fsm.min.js
+[generator-browser-dist]: https://raw.githubusercontent.com/nhz-io/nhz-fsm/master/dist/nhz-fsm-generator.min.js
