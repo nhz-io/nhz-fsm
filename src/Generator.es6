@@ -30,8 +30,6 @@ export default class Generator {
       let end = json.slice(start).findIndex(i => isNaN(i)) + start;
       let i = start;
 
-      console.lo
-
       while(i < end) {
         if(json[i] != null) {
           if(state != null) {
@@ -104,7 +102,7 @@ export default class Generator {
     });
 
     events = Object.keys(events);
-    let offset = events.length + transitions.length;
+    let offset = states.length + transitions.length;
     events.forEach((event, i) => eventRemap[event] = i + offset);
     json.push(...states);
     json.push(...transitions);
@@ -114,3 +112,5 @@ export default class Generator {
 
   toJSON() { return this.export() }
 }
+
+export { Generator as FSMGenerator };
