@@ -44,13 +44,14 @@ export default class Main extends Base {
   constructor(props) {
     super(props);
     this.state = {
-      muiTheme: ThemeManager.getMuiTheme(LightRawTheme),
-      repoName: 'nhz-fsm',
-      appTitle: 'State Machine Editor',
-      initialStateTitle: 'Initial State',
-      eventTitle: 'Event',
-      finalStateTitle: 'Final State',
-      filterHintText: 'Filter',
+      muiTheme                 : ThemeManager.getMuiTheme(LightRawTheme),
+      repoName                 : 'nhz-fsm',
+      appTitle                 : 'State Machine Editor',
+      initialStateTitle        : 'Initial State',
+      eventTitle               : 'Event',
+      finalStateTitle          : 'Final State',
+      filterHintText           : 'Filter',
+      githubUrl                : 'https://github.com/nhz-io/nhz-fsm'
     };
     this.bindHandlers(/^_handle[A-Z]/, Main.prototype);
   }
@@ -89,11 +90,17 @@ export default class Main extends Base {
           zDepth={1}
           showMenuIconButton={false}
           title={[
-            <span>{state.repoName}</span>,
-            <IconButton style={{padding:0}} iconStyle={{color:'rgba(255,255,255,0.9)', position:'relative', top:'2px'}}>
-              <i className="mega-octicon octicon-mark-github" />
+            <span key='repo-name'>{state.repoName}</span>,
+            <IconButton
+              style={{padding:0}}
+              iconStyle={{color:'rgba(255,255,255,0.9)', position:'relative', top:'2px'}}
+              onClick={this._handleAppBarGithubButtonClick}
+              onTouchTap={this._handleAppBarGithubButtonClick}
+              key='icon-button'
+            >
+              <i className="mega-octicon octicon-mark-github" key='icon'/>
             </IconButton>,
-            <span>{state.appTitle}</span>
+            <span key='app-title'>{state.appTitle}</span>
           ]}
         />
         <Paper zDepth={1}>
@@ -129,5 +136,9 @@ export default class Main extends Base {
         </Paper>
       </div>
     )
+  }
+
+  _handleAppBarGithubButtonClick() {
+    document.location = this.state.githubUrl;
   }
 }
