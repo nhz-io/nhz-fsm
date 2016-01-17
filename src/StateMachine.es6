@@ -56,16 +56,12 @@ export default class StateMachine {
     }
 
     Object.defineProperties(this, {
-      table: { enumerable: true, get: this.getTable.bind(this) },
-      state: { enumerable: true, get: this.getState.bind(this) },
+      table     : { enumerable:true, get: () => this[TABLE].map(s => s.slice()) },
+      state     : { enumerable:true, get: () => this[STATES][this[STATE]] },
     });
 
     events.forEach(e => this[e] = this.triggerEvent.bind(this, e));
   }
-
-  getTable() { return this[TABLE].map(s => s.slice()) }
-
-  getState() { return this[STATES][this[STATE]] }
 
   triggerEvent(eventName) {
     let event;
