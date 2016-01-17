@@ -10,6 +10,37 @@ const
   STATES = Symbol(),
   EVENTS = Symbol();
 
+const triggerEvent = function(eventName) {
+  let event;
+  this[EVENTS].find((e, i) => e === eventName && ((event = i) || true));
+  assert(event != null, `Missing event: ${eventName}`);
+  let state = [this[STATE]];
+  let stateName = this[STATES][state];
+  state = this[TABLE][state];
+  event = assert(state[event], `Event: ${eventName} is invalid in state: ${stateName}`);
+
+  event.find((s, i) => {
+    if(s && this[STATE] !== i) {
+      const nextStateName = this[STATES][i];
+
+      const guard = this[`${stateName}-${eventName}-${nextStateName}`];
+      if(guard && (!isFunction(guard) || guard())) { return false };
+
+      const leave = this[`leave${capitalize(stateName)}`];
+      if(leave && isFunction(leave) ) { leave.call(this) }
+
+      this[STATE] = i;
+
+      const enter = this[`enter${capitalize(nextStateName)}`]
+      if(enter && isFunction(enter)) { enter.call(this) }
+
+      return true;
+    }
+  });
+
+  return this;
+}
+
 export default class StateMachine {
   constructor(json) {
     assert(json, `Missing configuration table`)
@@ -60,38 +91,7 @@ export default class StateMachine {
       state     : { enumerable:true, get: () => this[STATES][this[STATE]] },
     });
 
-    events.forEach(e => this[e] = this.triggerEvent.bind(this, e));
-  }
-
-  triggerEvent(eventName) {
-    let event;
-    this[EVENTS].find((e, i) => e === eventName && ((event = i) || true));
-    assert(event != null, `Missing event: ${eventName}`);
-    let state = [this[STATE]];
-    let stateName = this[STATES][state];
-    state = this[TABLE][state];
-    event = assert(state[event], `Event: ${eventName} is invalid in state: ${stateName}`);
-
-    event.find((s, i) => {
-      if(s && this[STATE] !== i) {
-        const nextStateName = this[STATES][i];
-
-        const guard = this[`${stateName}-${eventName}-${nextStateName}`];
-        if(guard && (!isFunction(guard) || guard())) { return false };
-
-        const leave = this[`leave${capitalize(stateName)}`];
-        if(leave && isFunction(leave) ) { leave.call(this) }
-
-        this[STATE] = i;
-
-        const enter = this[`enter${capitalize(nextStateName)}`]
-        if(enter && isFunction(enter)) { enter.call(this) }
-
-        return true;
-      }
-    });
-
-    return this;
+    events.forEach(e => Object.defineProperty(this, e, { value:triggerEvent.bind(this, e) }));
   }
 }
 
