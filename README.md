@@ -32,7 +32,7 @@ https://nhz-io.github.io/nhz-fsm
 ### [MIT](LICENSE)
 
 ## [VERSION](HISTORY.md)
-### 0.0.2
+### 0.0.3
 
 [travis-image]: https://travis-ci.org/nhz-io/nhz-fsm.svg
 [travis-url]: https://travis-ci.org/nhz-io/nhz-fsm
