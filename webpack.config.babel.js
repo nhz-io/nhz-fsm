@@ -282,12 +282,12 @@ if(TARGET === 'gh-pages') {
           loaders: [
             'file?hash=sha512&digest=hex&name=[hash].[ext]'
           ],
-          include: [ SRC_PATH, DEV_PATH, path.resolve(ROOT_PATH, NODE_MOSULES_PATH) ]
+          include: [ SRC_PATH, DEV_PATH, path.resolve(ROOT_PATH, NODE_MODULES_PATH) ]
         },
         {
           test: /\.scss$/,
           loaders: [ 'style', 'css', 'sass' ],
-          include: [ SRC_PATH, DEV_PATH, path.resolve(ROOT_PATH, NODE_MOSULES_PATH) ]
+          include: [ SRC_PATH, DEV_PATH, path.resolve(ROOT_PATH, NODE_MODULES_PATH) ]
         }
       ]
     },
