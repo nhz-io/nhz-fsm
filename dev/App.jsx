@@ -1,5 +1,6 @@
 import React from 'react';
 import Base from './Base.jsx';
+import config from 'config';
 
 import RaisedButton from 'material-ui/lib/raised-button';
 import Dialog from 'material-ui/lib/dialog';
@@ -45,13 +46,11 @@ export default class Main extends Base {
     super(props);
     this.state = {
       muiTheme                 : ThemeManager.getMuiTheme(LightRawTheme),
-      repoName                 : 'nhz-fsm',
       appTitle                 : 'State Machine Editor',
       initialStateTitle        : 'Initial State',
       eventTitle               : 'Event',
       finalStateTitle          : 'Final State',
       filterHintText           : 'Filter',
-      githubUrl                : 'https://github.com/nhz-io/nhz-fsm'
     };
     this.bindHandlers(/^_handle[A-Z]/, Main.prototype);
   }
@@ -69,10 +68,10 @@ export default class Main extends Base {
       canvasColor: Colors.white,
       borderColor: Colors.grey300,
       pickerHeaderColor: Colors.cyan500,
-      accent1Color: Colors.deepOrange500
+      accent1Color: Colors.deepOrange500,
     });
     newMuiTheme = ThemeManager.modifyRawThemeFontFamily(newMuiTheme, {
-      fontFamily: 'Raleway, sans-serif'
+      fontFamily: 'Raleway, sans-serif',
     });
     this.setState({muiTheme: newMuiTheme});
   }
@@ -90,7 +89,7 @@ export default class Main extends Base {
           zDepth={1}
           showMenuIconButton={false}
           title={[
-            <span key='repo-name'>{state.repoName}</span>,
+            <span key='repo-name'>{config.repoName}</span>,
             <IconButton
               style={{padding:0}}
               iconStyle={{color:'rgba(255,255,255,0.9)', position:'relative', top:'2px'}}
@@ -100,7 +99,7 @@ export default class Main extends Base {
             >
               <i className="mega-octicon octicon-mark-github" key='icon'/>
             </IconButton>,
-            <span key='app-title'>{state.appTitle}</span>
+            <span key='app-title'>{config.appTitle}</span>,
           ]}
         />
         <Paper zDepth={1}>
@@ -139,6 +138,6 @@ export default class Main extends Base {
   }
 
   _handleAppBarGithubButtonClick() {
-    document.location = this.state.githubUrl;
+    document.location = config.githubUrl;
   }
 }
