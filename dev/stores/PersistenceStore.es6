@@ -7,7 +7,7 @@ import merge from 'merge';
 
 const save = throttle((key, value) => { store.set(key, value) }, 500);
 
-export default class LocalStore {
+export default class PersistenceStore {
   constructor(actions) {
     this.glob = null;
     this._state = this.state = store.get(config.stateMachinesStoreKey);
