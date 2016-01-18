@@ -1,13 +1,13 @@
 export default class PersistenceActions {
-  update(state) { return state }
+  update(machines) { return machines }
 
-  set(state) { return state }
+  set(machines) { return machines }
 
-  add({name, description, fsm}) { return { name, description, fsm} }
+  add({name, description, fsm}) { return { name, description, fsm } }
 
-  remove({id}) { return {id} }
+  remove({id, uuid}) { return { id, uuid } }
 
   clear() { return {} }
 
-  filter(glob) { return glob }
+  filter({match}) { return { match } }
 }
