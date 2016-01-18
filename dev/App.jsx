@@ -17,7 +17,6 @@ import AppBar from 'material-ui/lib/app-bar';
 import TextField from 'material-ui/lib/text-field';
 import IconButton from 'material-ui/lib/icon-button';
 
-
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import ActionGrade from 'material-ui/lib/svg-icons/action/grade';
@@ -27,6 +26,16 @@ import ContentDrafts from 'material-ui/lib/svg-icons/content/drafts';
 import ContentSend from 'material-ui/lib/svg-icons/content/send';
 import Divider from 'material-ui/lib/divider';
 import Badge from 'material-ui/lib/badge';
+
+import Alt from 'alt';
+const alt = new Alt();
+
+import PersistenceStore from './stores/PersistenceStore.es6';
+import PersistenceActions from './actions/PersistenceActions.es6'
+
+const persistenceActions = alt.createActions(PersistenceActions)
+const persistenceStore =
+  alt.createStore(PersistenceStore, 'PersistenceStore', persistenceActions);
 
 const { PropTypes } = React;
 
