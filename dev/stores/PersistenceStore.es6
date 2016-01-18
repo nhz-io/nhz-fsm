@@ -4,13 +4,15 @@ import throttle from 'nhz-throttle';
 import uuid from 'uuid';
 import filter from 'filter-object';
 import merge from 'merge';
+import validator from 'validator';
 
-const save = throttle((key, value) => { store.set(key, value) }, 500);
+const save = throttle((key, value) => { store.set(key, value) }, 1000);
 
 export default class PersistenceStore {
   constructor(actions) {
-    this.glob = null;
-    this._state = this.state = store.get(config.stateMachinesStoreKey);
+    this.match = null;
+    this.machines = store.get(config.stateMachinesStoreKey) || {};
+
     this.bindListeners({
       handleAdd: actions.ADD,
       handleRemove: actions.REMOVE,
@@ -19,41 +21,41 @@ export default class PersistenceStore {
       handleFilter: actions.FILTER,
       handleClear: actions.CLEAR,
     });
+
+    this.on('afterEach', ({state}) => {
+      save(config.stateMachinesStoreKey, state.machines)
+    });
   }
 
-  handleUpdate(state) {
-    this._state = merge.recursive(true, this._state, filter(state, (v) => v.id && true));
-    save(config.stateMachineStoreKey, this._state);
-    this.state = this.glob ? filter(this._state, this.glob) : this._state;
+  handleUpdate(machines) {
+    for(let k in machines) {
+      let machine = machines[k];
+      if(validator.isUUID(k) && machine.name) {
+        this.machines[k] = merge(true, machine, { timestamp: Date.now() })
+      }
+    }
   }
 
-  handleSet(state) {
-    this._state = filter(state, (v) => v.id && true));
-    save(config.stateMachineStoreKey, this._state);
-    this.state = this.glob ? filter(this._state, this.glob) : this._state;
-  }
+  handleSet(machines) { this.machines = merge(true, machines) }
 
   handleAdd({name, description, fsm}) {
-    this._state[uuid.v4()] = {name, description, fsm};
-    save(config.stateMachineStoreKey, this._state);
-    this.state = this.glob ? filter(this._state, this.glob) : this._state;
+    if(name) {
+      this.machines[uuid.v4()] = { name, description, fsm, timestamp:Date.now() };
+    }
   }
 
   handleRemove({id, uuid}) {
-    if(this._state[id || uuid]) {
-      delete(this._state[id || uuid]);
-      save(config.stateMachineStoreKey, this._state);
+    if(validator.isUUID(id || uuid)) { delete(this.machines[id || uuid]) }
+  }
+
+  handleFilter({match}) { this.match = match }
+
+  handleClear() { this.machines = {} }
+
+  output(state) {
+    if(state.match) {
+      return filter(state.machines, (m) => m.name.match(state.match));
     }
-    this.state = this.glob ? filter(this._state, this.glob) : this._state;
-  }
-
-  handleFilter(glob) {
-    this.glob = glob;
-    this.state = this.glob ? filter(this._state, this.glob) : this._state;
-  }
-
-  handleClear() {
-    this._state = this.state = {};
-    save(config.stateMachineStoreKey, this._state);
+    return merge(true, state.machines);
   }
 }
