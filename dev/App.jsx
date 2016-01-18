@@ -39,8 +39,18 @@ const persistenceActions = alt.createActions(PersistenceActions)
 const persistenceStore =
   alt.createStore(PersistenceStore, 'PersistenceStore', persistenceActions);
 
+
+import StateMachineStore from './stores/StateMachineStore';
+import StateMachineActions from './actions/StateMachineActions';
+
+const stateMachineActions = alt.createActions(StateMachineActions);
+const stateMachineStore =
+  alt.createStore(StateMachineStore, 'StateMachineStore', stateMachineActions);
+
 window.persistenceActions = persistenceActions;
 window.persistenceStore = persistenceStore;
+window.stateMachineActions = stateMachineActions;
+window.stateMachineStore = stateMachineStore;
 
 const { PropTypes } = React;
 
