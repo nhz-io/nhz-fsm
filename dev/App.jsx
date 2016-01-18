@@ -62,6 +62,7 @@ export default class Main extends Base {
       filterHintText           : 'Filter',
     };
     this.bindHandlers(/^_handle[A-Z]/, Main.prototype);
+    persistenceStore.listen(this._handlePersistenceStoreChanged);
   }
 
   componentWillMount() {
@@ -149,4 +150,6 @@ export default class Main extends Base {
   _handleAppBarGithubButtonClick() {
     document.location = config.githubUrl;
   }
+
+  _handlePersistenceStoreChanged(machines) { this.setState({machines}) }
 }
