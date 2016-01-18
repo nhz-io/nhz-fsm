@@ -5,15 +5,11 @@ export default class StateMachineActions {
 
   clear() { return {} }
 
-  addState({name}) { return {name} }
+  add({fromState, event, toState}) {
+    return { fromState, event, toState }
+  }
 
-  removeState({name}) { return {name} }
-
-  addEvent({name}) { return {name} }
-
-  removeEvent({name}) { return {name} }
-
-  addTransition({from, event, to}) { return { from, event, to } }
-
-  removeTransition({from, event, to}) { return { from, event, to } }
+  remove({fromState, event, toState}) {
+    return { fromState, event, toState }
+  }
 }
