@@ -27,6 +27,8 @@ import ContentSend from 'material-ui/lib/svg-icons/content/send';
 import Divider from 'material-ui/lib/divider';
 import Badge from 'material-ui/lib/badge';
 
+import MachinesList from './MachinesList.jsx';
+
 import Alt from 'alt';
 const alt = new Alt();
 
@@ -36,6 +38,9 @@ import PersistenceActions from './actions/PersistenceActions.es6'
 const persistenceActions = alt.createActions(PersistenceActions)
 const persistenceStore =
   alt.createStore(PersistenceStore, 'PersistenceStore', persistenceActions);
+
+window.persistenceActions = persistenceActions;
+window.persistenceStore = persistenceStore;
 
 const { PropTypes } = React;
 
@@ -60,6 +65,7 @@ export default class Main extends Base {
       eventTitle               : 'Event',
       finalStateTitle          : 'Final State',
       filterHintText           : 'Filter',
+      machines                 : persistenceStore.getState().machines,
     };
     this.bindHandlers(/^_handle[A-Z]/, Main.prototype);
     persistenceStore.listen(this._handlePersistenceStoreChanged);
@@ -112,19 +118,13 @@ export default class Main extends Base {
             <span key='app-title'>{config.appTitle}</span>,
           ]}
         />
-        <Paper zDepth={1}>
-          <Toolbar>
-            <ToolbarGroup>
-              <ToolbarTitle text={state.initialStateTitle} />
-            </ToolbarGroup>
-          </Toolbar>
-          <TextField hintText={state.filterHintText}/>
-          <List>
-            <ListItem primaryText='init' />
-            <ListItem primaryText='start' />
-            <ListItem primaryText='foo' />
-            <ListItem primaryText='bar' />
-          </List>
+        <Paper zDepth={1} style={{height:300, margin:8, width:400}}>
+          <MachinesList
+            style={{width:300, height:'100%', overflowY:'scroll'}}
+            subheader='Cached Machines'
+            machines={this.state.machines}
+            onDeleteAction={(item) => { persistenceActions.remove({id:item.id})}}
+          />
         </Paper>
         <Paper zDepth={1}>
           <Toolbar>
