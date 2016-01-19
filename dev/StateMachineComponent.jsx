@@ -9,14 +9,30 @@ import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
 export default class StateMachineComponent extends Base {
   constructor(props) {
     super(props);
+    this.state = props.store.getState();
+    this.bindHandlers(/^_handle[A-Z]/, StateMachineComponent.prototype);
   }
 
+  componentDidMount() {
+    const { props } = this;
+    props.store.listen(this._handleStoreChange);
+  }
+
+  componentWillUnmount() {
+    const { props } = this;
+    props.store.unlisten(this._handleStoreChange);
+  }
+
+  _handleStoreChange(state) { this.setState(state) }
+
   render() {
+    const { props } = this;
+    const { store, actions, state } = props;
     return(
       <Paper>
         <Toolbar>
           <ToolbarGroup>
-            <ToolbarTitle></ToolbarTitle>
+            <ToolbarTitle>{props.title}</ToolbarTitle>
           </ToolbarGroup>
           <ToolbarGroup>
           </ToolbarGroup>
