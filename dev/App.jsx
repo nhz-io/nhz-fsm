@@ -52,6 +52,8 @@ window.persistenceStore = persistenceStore;
 window.stateMachineActions = stateMachineActions;
 window.stateMachineStore = stateMachineStore;
 
+import StateMachineComponent from './StateMachineComponent.jsx';
+
 import FSM from 'src/StateMachine.es6';
 import FSMGenerator from 'src/Generator.es6';
 window.FSM = FSM;
@@ -133,6 +135,7 @@ export default class Main extends Base {
             <span key='app-title'>{config.appTitle}</span>,
           ]}
         />
+        <StateMachineComponent />
         <Paper zDepth={1} style={{height:300, margin:8, width:400}}>
           <MachinesList
             style={{width:300, height:'100%', overflowY:'scroll'}}
