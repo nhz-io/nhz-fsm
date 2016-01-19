@@ -52,6 +52,11 @@ window.persistenceStore = persistenceStore;
 window.stateMachineActions = stateMachineActions;
 window.stateMachineStore = stateMachineStore;
 
+import FSM from 'src/StateMachine.es6';
+import FSMGenerator from 'src/Generator.es6';
+window.FSM = FSM;
+window.FSMGenerator = FSMGenerator;
+
 const { PropTypes } = React;
 
 const hasOwnProp = (obj, key) => ({}).hasOwnProperty.call(obj, key);
