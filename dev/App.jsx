@@ -117,13 +117,13 @@ export default class Main extends Base {
     const {state} = this;
     const cardWidth = '70%';
     return(
-      <div className='app-container'>
+      <div className='app-container' >
         <AppBar
           zDepth={1}
           showMenuIconButton={false}
           title={[
             <span key='repo-name'>{config.repoName}</span>,
-            <IconButton
+            <IconButton              
               style={{padding:0}}
               iconStyle={{color:'rgba(255,255,255,0.9)', position:'relative', top:'2px'}}
               onClick={this._handleAppBarGithubButtonClick}
@@ -135,32 +135,8 @@ export default class Main extends Base {
             <span key='app-title'>{config.appTitle}</span>,
           ]}
         />
-        <StateMachineComponent />
-        <Paper zDepth={1} style={{height:300, margin:8, width:400}}>
-          <MachinesList
-            style={{width:300, height:'100%', overflowY:'scroll'}}
-            subheader='Cached Machines'
-            machines={this.state.machines}
-            onDeleteAction={(item) => { persistenceActions.remove({id:item.id})}}
-          />
-        </Paper>
-        <Paper zDepth={1}>
-          <Toolbar>
-            <ToolbarGroup>
-              <ToolbarTitle text={state.eventTitle} />
-            </ToolbarGroup>
-          </Toolbar>
-          <TextField hintText={state.filterHintText}/>
-          <Paper style={{height:200, margin: 8}} />
-        </Paper>
-        <Paper zDepth={1}>
-          <Toolbar>
-            <ToolbarGroup>
-              <ToolbarTitle text={state.finalStateTitle} />
-            </ToolbarGroup>
-          </Toolbar>
-          <TextField hintText={state.filterHintText}/>
-        </Paper>
+        <StateMachineComponent className='state-machine-editor' title='foobar'/>
+
       </div>
     )
   }

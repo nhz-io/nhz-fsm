@@ -5,34 +5,38 @@ import Toolbar from 'material-ui/lib/toolbar/toolbar';
 import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
 import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
 import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
+import MemoryIcon from 'material-ui/lib/svg-icons/hardware/memory';
+
 
 export default class StateMachineComponent extends Base {
   constructor(props) {
     super(props);
-    this.state = props.store.getState();
+    this.state = props.store ? props.store.getState() : {};
     this.bindHandlers(/^_handle[A-Z]/, StateMachineComponent.prototype);
   }
 
   componentDidMount() {
-    const { props } = this;
-    props.store.listen(this._handleStoreChange);
+    const { store } = this.props;
+    store && store.listen(this._handleStoreChange);
   }
 
   componentWillUnmount() {
-    const { props } = this;
-    props.store.unlisten(this._handleStoreChange);
+    const { store } = this.props;
+    store && store.unlisten(this._handleStoreChange);
   }
 
   _handleStoreChange(state) { this.setState(state) }
 
   render() {
     const { props } = this;
-    const { store, actions, state } = props;
     return(
-      <Paper>
-        <Toolbar>
+      <Paper className={props.className}>
+        <Toolbar float='left'>
+          <ToolbarGroup float='left' firstChild={true}>
+            <MemoryIcon color="rgba(0,0,0,0.2)" style={{width:40, height:40, margin:8}} />
+          </ToolbarGroup>
           <ToolbarGroup>
-            <ToolbarTitle>{props.title}</ToolbarTitle>
+            <ToolbarTitle text={props.title} />
           </ToolbarGroup>
           <ToolbarGroup>
           </ToolbarGroup>
