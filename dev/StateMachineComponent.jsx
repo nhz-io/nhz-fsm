@@ -43,13 +43,13 @@ export default class StateMachineComponent extends Base {
           <ToolbarGroup>
           </ToolbarGroup>
         </Toolbar>
-        <Tabs>
+        <Tabs style={{margin:5}}>
           <Tab label="Transitions">
             <div className='columns-container'>
             </div>
           </Tab>
           <Tab label="State Chart">
-            
+
           </Tab>
           <Tab label="Diagram" />
           <Tab label="Tools" />
