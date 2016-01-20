@@ -25,12 +25,18 @@ html, body, #app, .app-container {
   min-height: 600px;
 }
 
-.state-machine-editor .columns-container {
-  display: flex;
-  flex-direction: row;
+.state-machine-editor .columns-container {  
 }
 
 .state-machine-editor .columns-container > * {
   margin: 4px;
-  flex: 1
+  flex: 1 6 20%;
+}
+
+.state-machine-editor .columns-container > *:first-child {
+  margin-left:2px;
+}
+
+.state-machine-editor .columns-container > *:last-child {
+  margin-right:2px;
 }

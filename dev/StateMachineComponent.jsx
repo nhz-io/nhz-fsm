@@ -46,6 +46,9 @@ export default class StateMachineComponent extends Base {
         <Tabs style={{margin:5}}>
           <Tab label="Transitions">
             <div className='columns-container'>
+              <Paper>A</Paper>
+              <Paper>B</Paper>
+              <Paper>C</Paper>
             </div>
           </Tab>
           <Tab label="State Chart">
