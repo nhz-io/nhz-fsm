@@ -24,3 +24,13 @@ html, body, #app, .app-container {
   margin: 10px;
   min-height: 600px;
 }
+
+.state-machine-editor .columns-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.state-machine-editor .columns-container > * {
+  margin: 4px;
+  flex: 1
+}

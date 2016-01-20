@@ -6,6 +6,8 @@ import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
 import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
 import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
 import MemoryIcon from 'material-ui/lib/svg-icons/hardware/memory';
+import Tabs from 'material-ui/lib/tabs/tabs';
+import Tab from 'material-ui/lib/tabs/tab';
 
 
 export default class StateMachineComponent extends Base {
@@ -41,6 +43,17 @@ export default class StateMachineComponent extends Base {
           <ToolbarGroup>
           </ToolbarGroup>
         </Toolbar>
+        <Tabs>
+          <Tab label="Transitions">
+            <div className='columns-container'>
+            </div>
+          </Tab>
+          <Tab label="State Chart">
+            
+          </Tab>
+          <Tab label="Diagram" />
+          <Tab label="Tools" />
+        </Tabs>
       </Paper>
     );
   }

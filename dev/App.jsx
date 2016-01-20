@@ -123,7 +123,7 @@ export default class Main extends Base {
           showMenuIconButton={false}
           title={[
             <span key='repo-name'>{config.repoName}</span>,
-            <IconButton              
+            <IconButton
               style={{padding:0}}
               iconStyle={{color:'rgba(255,255,255,0.9)', position:'relative', top:'2px'}}
               onClick={this._handleAppBarGithubButtonClick}
@@ -136,7 +136,6 @@ export default class Main extends Base {
           ]}
         />
         <StateMachineComponent className='state-machine-editor' title='foobar'/>
-
       </div>
     )
   }
