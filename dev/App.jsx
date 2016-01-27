@@ -161,4 +161,8 @@ export default class Main extends Base {
   }
 
   _handlePersistenceStoreChanged(machines) { this.setState({machines}) }
+
+  _handleMachineListLauncherClick() {
+    this.setState({machineListOpen:true});
+  }
 }
