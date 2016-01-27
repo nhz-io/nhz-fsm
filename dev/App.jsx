@@ -151,7 +151,10 @@ export default class Main extends Base {
           open={this.state.machineListOpen}
           onRequestChange={ (machineListOpen) => this.setState({machineListOpen}) }
         >
-          <MachinesList machines={this.state.machines} />
+          <MachinesList
+            machines={this.state.machines}
+            onDeleteAction={this._handleDeleteMachineButtonClick}
+          />
         </LeftNav>
         <StateMachineComponent className='state-machine-editor' title='foobar'/>
       </div>
@@ -166,5 +169,9 @@ export default class Main extends Base {
 
   _handleMachineListLauncherClick() {
     this.setState({machineListOpen:true});
+  }
+
+  _handleDeleteMachineButtonClick(machine) {
+    persistenceActions.remove(machine);
   }
 }
