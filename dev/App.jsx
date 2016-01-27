@@ -126,7 +126,7 @@ export default class Main extends Base {
           zDepth={1}
           showMenuIconButton={false}
           iconElementRight={
-          <IconButton>
+          <IconButton onTouchTap={this._handleMachineListLauncherClick}>
             <MemoryIcon color='rgba(255,255,255,0.9)' />
           </IconButton>
           }
