@@ -29,6 +29,8 @@ import Badge from 'material-ui/lib/badge';
 
 import MemoryIcon from 'material-ui/lib/svg-icons/hardware/memory';
 
+import LeftNav from 'material-ui/lib/left-nav';
+
 import MachinesList from './MachinesList.jsx';
 
 import Alt from 'alt';
@@ -124,23 +126,30 @@ export default class Main extends Base {
           zDepth={1}
           showMenuIconButton={false}
           iconElementRight={
-            <IconButton>
-              <MemoryIcon color='rgba(255,255,255,0.9)' />
-            </IconButton>
+          <IconButton>
+            <MemoryIcon color='rgba(255,255,255,0.9)' />
+          </IconButton>
           }
           title={[
-            <span key='repo-name'>{config.repoName}</span>,
-            <IconButton
-              style={{padding:0}}
-              iconStyle={{color:'rgba(255,255,255,0.9)', position:'relative', top:'2px'}}
-              onClick={this._handleAppBarGithubButtonClick}
-              onTouchTap={this._handleAppBarGithubButtonClick}
-              key='github-button'
-            >
-              <i className="mega-octicon octicon-mark-github" key='icon'/>
-            </IconButton>,
-            <span key='app-title'>{config.appTitle}</span>,
+          <span key='repo-name'>{config.repoName}</span>,
+          <IconButton
+            style={{padding:0}}
+            iconStyle={{color:'rgba(255,255,255,0.9)', position:'relative', top:'2px'}}
+            onClick={this._handleAppBarGithubButtonClick}
+            onTouchTap={this._handleAppBarGithubButtonClick}
+            key='github-button'
+          >
+            <i className="mega-octicon octicon-mark-github" key='icon'/>
+          </IconButton>,
+          <span key='app-title'>{config.appTitle}</span>,
           ]}
+        />,
+        <LeftNav
+          docked={false}
+          openRight={true}
+          width={300}
+          open={this.state.machineListOpen}
+          onRequestChange={ (machineListOpen) => this.setState({machineListOpen}) }
         />
         <StateMachineComponent className='state-machine-editor' title='foobar'/>
       </div>
