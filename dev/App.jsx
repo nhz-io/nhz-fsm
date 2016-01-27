@@ -150,7 +150,9 @@ export default class Main extends Base {
           width={300}
           open={this.state.machineListOpen}
           onRequestChange={ (machineListOpen) => this.setState({machineListOpen}) }
-        />
+        >
+          <MachinesList machines={this.state.machines} />
+        </LeftNav>
         <StateMachineComponent className='state-machine-editor' title='foobar'/>
       </div>
     )
