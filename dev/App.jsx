@@ -43,7 +43,6 @@ const persistenceActions = alt.createActions(PersistenceActions)
 const persistenceStore =
   alt.createStore(PersistenceStore, 'PersistenceStore', persistenceActions);
 
-
 import StateMachineStore from './stores/StateMachineStore';
 import StateMachineActions from './actions/StateMachineActions';
 
@@ -87,6 +86,7 @@ export default class Main extends Base {
       finalStateTitle          : 'Final State',
       filterHintText           : 'Filter',
       machines                 : persistenceStore.getState().machines,
+      selectedMachine          : null,
     };
     this.bindHandlers(/^_handle[A-Z]/, Main.prototype);
     persistenceStore.listen(this._handlePersistenceStoreChanged);
@@ -154,6 +154,10 @@ export default class Main extends Base {
           <MachinesList
             machines={this.state.machines}
             onDeleteAction={this._handleDeleteMachineButtonClick}
+            valueLink={{
+              value: this.state.selectedMachine,
+              requestChange: this._handleSelectMachineFromList,
+            }}
           />
         </LeftNav>
         <StateMachineComponent className='state-machine-editor' title='foobar'/>
@@ -173,5 +177,9 @@ export default class Main extends Base {
 
   _handleDeleteMachineButtonClick(machine) {
     persistenceActions.remove(machine);
+  }
+
+  _handleSelectMachineFromList(selectedMachine) {
+    this.setState({selectedMachine});
   }
 }
