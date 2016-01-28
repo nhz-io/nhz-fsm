@@ -31,7 +31,7 @@ import MemoryIcon from 'material-ui/lib/svg-icons/hardware/memory';
 
 import LeftNav from 'material-ui/lib/left-nav';
 
-import MachinesList from './MachinesList.jsx';
+import MachinesList from './components/MachinesList.jsx';
 
 import Alt from 'alt';
 const alt = new Alt();

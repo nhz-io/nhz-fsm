@@ -1,12 +1,12 @@
 import React from 'react';
-import Base from './Base.jsx';
+import Base from '../Base.jsx';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import Avatar from 'material-ui/lib/avatar';
 import MemoryIcon from 'material-ui/lib/svg-icons/hardware/memory';
 import ClearIcon from 'material-ui/lib/svg-icons/content/clear';
-import {SelectableContainerEnhance} from 'material-ui/lib/hoc/selectable-enhance';
-let SelectableList = SelectableContainerEnhance(List);
+import SelectableContainerEnhance './SelectableContainerEnhance';
+import SelectableList from './SelectableList';
 
 export default class MachinesList extends Base {
   constructor(props) {
