@@ -14,4 +14,13 @@ export default class SelectableContainerEnhance extends SelectableEnhance {
       requestChange: props.onChange,
     };
   }
+
+  _handleItemTouchTap(e, item) {
+    let valueLink = this.getValueLink(this.props);
+    let itemValue = item.props.value;
+    let menuValue = valueLink.value.find(itemValue);
+    if ( itemValue !== menuValue) {
+      valueLink.requestChange(e, itemValue);
+    }
+  }
 }
