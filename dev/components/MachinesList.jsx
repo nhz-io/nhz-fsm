@@ -5,7 +5,7 @@ import ListItem from 'material-ui/lib/lists/list-item';
 import Avatar from 'material-ui/lib/avatar';
 import MemoryIcon from 'material-ui/lib/svg-icons/hardware/memory';
 import ClearIcon from 'material-ui/lib/svg-icons/content/clear';
-import SelectableContainerEnhance './SelectableContainerEnhance';
+import SelectableContainerEnhance from './SelectableContainerEnhance';
 import SelectableList from './SelectableList';
 
 export default class MachinesList extends Base {
