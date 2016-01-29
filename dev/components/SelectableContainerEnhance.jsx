@@ -59,15 +59,24 @@ export default function SelectableContainerEnhance(Component) {
       };
     },
 
-    _extendChild(child, styles, selectedItemStyle) {
+    _extendChild(child, styles, selectedItemStyle, maskedItemStyle) {
       if (child && child.type && child.type.displayName === 'ListItem') {
-        let selected = this._isChildSelected(child, this.props);
-        let selectedChildrenStyles = {};
-        if (selected) {
-          selectedChildrenStyles = this.mergeStyles(styles, selectedItemStyle);
+        const { style } = child.props;
+        let
+          childrenStyles = {},
+          nestedItemStyle = {};
+
+        if (this._isChildMasked(child, this.props)) {
+          childrenStyles = this.mergeStyles(styles, maskedItemStyle);
+          nestedItemStyle = maskedItemStyle;
         }
 
-        let mergedChildrenStyles = this.mergeStyles(child.props.style || {}, selectedChildrenStyles);
+        else if(this._isChildSelected(child, this.props)) {
+          childrenStyles = this.mergeStyles(styles, selectedItemStyle)
+          nestedItemStyle = selectedItemStyle;
+        }
+
+        const mergedStyles = this.mergeStyles(style || {}, childrenStyles);
 
         this._keyIndex += 1;
 
@@ -79,12 +88,12 @@ export default function SelectableContainerEnhance(Component) {
             }
           },
           key: this._keyIndex,
-          style: mergedChildrenStyles,
+          style: mergedStyles,
           nestedItems: child.props.nestedItems.map((child) => this._extendChild(child, styles, selectedItemStyle)),
         });
-      } else {
-        return child;
       }
+
+      else { return child };
     },
 
     _isChildSelected(child, props) {
