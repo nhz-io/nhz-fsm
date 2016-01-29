@@ -88,14 +88,17 @@ export default function SelectableContainerEnhance(Component) {
       let itemValue = valueLink.value && valueLink.length
                         ? valueLink.value.find(childValue)
                         : valueLink.value;
-                      
+
       return (itemValue && itemValue === childValue);
     },
 
     _handleItemTouchTap(e, item) {
       let valueLink = this.getValueLink(this.props);
       let itemValue = item.props.value;
-      let menuValue = valueLink.value.find(itemValue);
+      let menuValue = valueLink.value && valueLink.length
+                        ? valueLink.value.find(itemValue)
+                        : valueLink.value;
+
       if ( itemValue !== menuValue) {
         valueLink.requestChange(e, itemValue);
       }
