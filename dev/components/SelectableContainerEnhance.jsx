@@ -15,10 +15,7 @@ export default function SelectableContainerEnhance(Component) {
       maskedItemStyle: React.PropTypes.object,
       valueLink: React.PropTypes.shape({
         value: React.PropTypes.any,
-        mask: React.PropTypes.object({
-          holes: React.PropTypes.array,
-          patches: React.PropTypes.array
-        }),
+        mask: React.PropTypes.array,
         requestChange: React.PropTypes.func,
       }).isRequired,
     },
@@ -56,6 +53,7 @@ export default function SelectableContainerEnhance(Component) {
       return props.valueLink || {
         value: props.value || [],
         requestChange: props.onChange,
+        mask: props.mask || [],
       };
     },
 
@@ -100,7 +98,7 @@ export default function SelectableContainerEnhance(Component) {
     _isChildMasked(child, props) {
       const { value } = child.props;
       const mask = this.getValueLink(props).mask || [];
-      return mask.includes(value);      
+      return mask.includes(value);
     }
 
     _handleItemTouchTap(e, item) {
