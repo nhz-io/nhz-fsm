@@ -140,7 +140,7 @@ export default function SelectableContainerEnhance(Component) {
         };
       }
 
-      let newChildren = React.Children.map(children, (child) => this._extendChild(child, {}, selectedItemStyle, maskedItemStyle));
+      let newChildren = React.Children.map(children, (child) => this._extendChild(child, selectedItemStyle, maskedItemStyle));
 
       return (
         <Component {...this.props} {...this.state}>
