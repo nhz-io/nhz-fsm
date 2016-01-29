@@ -91,11 +91,17 @@ export default function SelectableContainerEnhance(Component) {
       let childValue = child.props.value;
       let valueLink = this.getValueLink(props);
       let itemValue = valueLink.value && valueLink.length
-                        ? valueLink.value.find(childValue)
+                        ? valueLink.value.find(v => v === childValue)
                         : valueLink.value;
 
       return (itemValue && itemValue === childValue);
     },
+
+    _isChildMasked(child, props) {
+      const { value } = child.props;
+      const mask = this.getValueLink(props).mask || [];
+      return mask.includes(value);      
+    }
 
     _handleItemTouchTap(e, item) {
       let valueLink = this.getValueLink(this.props);
