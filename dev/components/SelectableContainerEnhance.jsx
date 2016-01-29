@@ -103,7 +103,7 @@ export default function SelectableContainerEnhance(Component) {
     },
 
     _handleItemTouchTap(e, item) {
-      const itemValue = item.props;
+      const itemValue = item.props.value;
       const { value, values, requestChange } = this.getValueLink(this.props);
 
       if((values && values.length) || (itemValue !== value)) {
