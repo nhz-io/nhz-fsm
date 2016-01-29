@@ -15,7 +15,7 @@ export default class FinalStateList extends Component {
 
   render() {
     const { props } = this;
-    const { states, selected, requestChange } = props;
+    const { states, selected, requestChange, mask } = props;
     return(
       <SelectableList
         {...props}
