@@ -15,7 +15,7 @@ export default class EventList extends Component {
 
   render() {
     const { props } = this;
-    const { events, selected, requestChange } = props;
+    const { events, selected, requestChange, mask } = props;
     return(
       <SelectableList
         {...props}
