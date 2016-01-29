@@ -84,8 +84,11 @@ export default function SelectableContainerEnhance(Component) {
 
     _isChildSelected(child, props) {
       let childValue = child.props.value;
-      let itemValue = this.getValueLink(props).value.find(childValue);
-
+      let valueLink = this.getValueLink(props);
+      let itemValue = valueLink.value && valueLink.length
+                        ? valueLink.value.find(childValue)
+                        : valueLink.value;
+                      
       return (itemValue && itemValue === childValue);
     },
 
