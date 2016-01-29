@@ -8,6 +8,7 @@ import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
 import MemoryIcon from 'material-ui/lib/svg-icons/hardware/memory';
 import Tabs from 'material-ui/lib/tabs/tabs';
 import Tab from 'material-ui/lib/tabs/tab';
+import InitialStateList from './components/InitialStateList.jsx';
 
 
 export default class StateMachineComponent extends Base {
@@ -46,7 +47,7 @@ export default class StateMachineComponent extends Base {
         <Tabs style={{margin:5}}>
           <Tab label="Transitions">
             <div className='columns-container'>
-              <Paper>A</Paper>
+              <Paper><InitialStateList state='foo' states={['foo', 'bar', 'bot', 'net']} requestChange={(a,b) => console.log("FOOBAR", a, b)}/></Paper>
               <Paper>B</Paper>
               <Paper>C</Paper>
             </div>

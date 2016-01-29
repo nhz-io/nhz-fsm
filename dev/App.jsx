@@ -156,6 +156,7 @@ export default class Main extends Base {
             onDeleteAction={this._handleDeleteMachineButtonClick}
             valueLink={{
               value: this.state.selectedMachine,
+              mask: this.state.maskedMachines,
               requestChange: this._handleSelectMachineFromList,
             }}
           />
@@ -179,7 +180,10 @@ export default class Main extends Base {
     persistenceActions.remove(machine);
   }
 
-  _handleSelectMachineFromList(selectedMachine) {
-    this.setState({selectedMachine});
+  _handleSelectMachineFromList(e, selectedMachine) {
+    console.log("SELECTED MACHINE", selectedMachine);
+    let maskedMachines = this.state.maskedMachines || [];
+    maskedMachines.push(selectedMachine);
+    this.setState({maskedMachines});
   }
 }
