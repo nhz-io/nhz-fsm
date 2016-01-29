@@ -12,8 +12,13 @@ export default function SelectableContainerEnhance(Component) {
     propTypes: {
       children: React.PropTypes.node,
       selectedItemStyle: React.PropTypes.object,
+      maskedItemStyle: React.PropTypes.object,
       valueLink: React.PropTypes.shape({
         value: React.PropTypes.any,
+        mask: React.PropTypes.object({
+          holes: React.PropTypes.array,
+          patches: React.PropTypes.array
+        }),
         requestChange: React.PropTypes.func,
       }).isRequired,
     },
