@@ -121,19 +121,26 @@ export default function SelectableContainerEnhance(Component) {
     },
 
     render() {
-      const {children, selectedItemStyle} = this.props;
+      const { children } = this.props;
+      let { selectedItemStyle, maskedItemStyle } = this.props;
       this._keyIndex = 0;
-      let styles = {};
 
       if (!selectedItemStyle) {
         let textColor = this.state.muiTheme.rawTheme.palette.textColor;
         let selectedColor = ColorManipulator.fade(textColor, 0.2);
-        styles = {
+        selectedItemStyle = {
+          color: textColor,
           backgroundColor: selectedColor,
         };
       }
 
-      let newChildren = React.Children.map(children, (child) => this._extendChild(child, styles, selectedItemStyle));
+      if (!maskedItemStyle) {
+        maskedItemStyle = {
+          opacity: 0.5,
+        };
+      }
+
+      let newChildren = React.Children.map(children, (child) => this._extendChild(child, {}, selectedItemStyle, maskedItemStyle));
 
       return (
         <Component {...this.props} {...this.state}>
