@@ -86,13 +86,10 @@ export default function SelectableContainerEnhance(Component) {
     },
 
     _isChildSelected(child, props) {
-      let childValue = child.props.value;
-      let valueLink = this.getValueLink(props);
-      let itemValue = valueLink.value && valueLink.length
-                        ? valueLink.value.find(v => v === childValue)
-                        : valueLink.value;
-
-      return (itemValue && itemValue === childValue);
+      const childValue = child.props.value;
+      const { values, value } = this.getValueLink(props);
+      const isSelected = values && values.length && values.contains(childValue)
+      return isSelected || (value && value === childValue)
     },
 
     _isChildMasked(child, props) {
