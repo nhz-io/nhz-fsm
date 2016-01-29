@@ -69,7 +69,7 @@ export default function SelectableContainerEnhance(Component) {
         }
 
         else if(this._isChildSelected(child, this.props)) {
-          childStyles = selectedItemStyle;
+          childStyle = selectedItemStyle;
         }
 
         const mergedStyle = this.mergeStyles(style || {}, childStyle);
