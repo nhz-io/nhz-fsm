@@ -1,5 +1,5 @@
 import React from 'react';
-import Base from './Base.jsx';
+import Base from 'jsx-base';
 import config from 'config';
 
 import RaisedButton from 'material-ui/lib/raised-button';

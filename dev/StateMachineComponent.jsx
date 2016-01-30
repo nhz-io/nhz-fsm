@@ -1,5 +1,5 @@
 import React from 'react';
-import Base from './Base.jsx';
+import Base from 'jsx-base';
 import Paper from 'material-ui/lib/paper';
 import Toolbar from 'material-ui/lib/toolbar/toolbar';
 import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';

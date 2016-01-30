@@ -1,5 +1,5 @@
 import React from 'react';
-import Base from '../Base.jsx';
+import Base from 'jsx-base';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import Avatar from 'material-ui/lib/avatar';
