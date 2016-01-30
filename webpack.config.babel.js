@@ -1,7 +1,9 @@
 var path = require('path');
+var aliases = require('./config/aliases.es6');
 var pkg = require('./package.json');
 var webpack = require('webpack');
 var HtmlwebpackPlugin = require('html-webpack-plugin');
+var merge = require('merge');
 
 var
   SRC                       = 'src',
@@ -14,9 +16,9 @@ var
   GENERATOR_BROWSER         = 'FSMGenerator',
   GENERATOR                 = 'Generator.es6',
   GENERATOR_DIST            = 'nhz-fsm-generator',
-  HOST                      = 'localhost',
   TEMPLATE                  = 'template.html',
   NODE_MODULES              = 'node_modules',
+  HOST                      = 'localhost',
   PORT                      = 9000,
 
   DEV_CONFIG                = 'dev.es6',
@@ -44,15 +46,21 @@ var
 
   TARGET                    = process.env.npm_lifecycle_event;
 
+const ALIAS = (function(alias = {}) {
+  for(var key in aliases) {
+    alias[key] = path.resolve(ROOT_PATH, aliases[key]);
+  };
+  return alias;
+})();
+
+
 if(TARGET === 'start') {
   module.exports = {
     resolve: {
       extensions: [ "", ".js", ".jsx", ".es6" ],
-      alias: {
-        src: SRC_PATH,
-        dev: DEV_PATH,
+      alias: merge(true, ALIAS, {
         config: DEV_CONFIG_PATH
-      }
+      }),
     },
 
     devtool: 'eval-source-map',
@@ -123,11 +131,9 @@ if(TARGET === 'dist') {
   module.exports = {
     resolve: {
       extensions: [ "", ".js", ".jsx", ".es6" ],
-      alias: {
-        src: SRC_PATH,
-        dev: DEV_PATH,
+      alias: merge(true, ALIAS, {
         config: DIST_CONFIG_PATH
-      }
+      }),
     },
 
     externals: (function(externals = {}) {
@@ -189,11 +195,9 @@ if(TARGET === 'dist-browser') {
   module.exports = {
     resolve: {
       extensions: [ "", ".js", ".jsx", ".es6" ],
-      alias: {
-        src: SRC_PATH,
-        dev: DEV_PATH,
+      alias: merge(true, ALIAS, {
         config: DIST_BROWSER_CONFIG_PATH
-      }
+      }),
     },
 
     entry: (function(entry = {}) {
@@ -250,11 +254,9 @@ if(TARGET === 'gh-pages') {
   module.exports = {
     resolve: {
       extensions: [ "", ".js", ".jsx", ".es6" ],
-      alias: {
-        src: SRC_PATH,
-        dev: DEV_PATH,
+      alias: merge(true, ALIAS, {
         config: GH_PAGES_CONFIG_PATH
-      }
+      }),
     },
 
     entry: MAIN_DEV_PATH,
