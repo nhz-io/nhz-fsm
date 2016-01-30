@@ -27,6 +27,8 @@
   "scripts": {
     "test": "npm run-script lint-webpack-config && jest --no-cache",
     "coverage": "npm run-script lint-webpack-config && jest --coverage --no-cache",
+    "coveralls": "npm run-script coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "travis": "npm run-script coveralls && npm run-script dist",
     "lint-webpack-config": "node node_modules/eslint/bin/eslint.js webpack.config.babel.js",
     "start": "npm run-script lint-webpack-config && node node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "dist": "npm run-script lint-webpack-config node node_modules/webpack/bin/webpack.js",
@@ -84,6 +86,7 @@
     "babel-preset-stage-1": "^6.3.13",
     "babel-register": "^6.4.3",
     "babel-runtime": "^6.3.19",
+    "coveralls": "^2.11.6",
     "css-loader": "^0.23.1",
     "eslint": "^1.10.3",
     "eslint-loader": "^1.2.0",
