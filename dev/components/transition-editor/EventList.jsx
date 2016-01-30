@@ -1,4 +1,4 @@
-import SelectableContainerEnhance from './SelectableContainerEnhance';
+import SelectableContainerEnhance from 'dev/components/SelectableContainerEnhance';
 import ListItem from 'material-ui/lib/lists/list-item';
 import React from 'react';
 const { Component, PropTypes } = React;
