@@ -1,5 +1,5 @@
 var path = require('path');
-var aliases = require('./config/aliases.es6');
+import aliases from './config/aliases.es6';
 var pkg = require('./package.json');
 var webpack = require('webpack');
 var HtmlwebpackPlugin = require('html-webpack-plugin');
