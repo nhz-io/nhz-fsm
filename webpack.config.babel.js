@@ -50,6 +50,7 @@ if(TARGET === 'start') {
       extensions: [ "", ".js", ".jsx", ".es6" ],
       alias: {
         src: SRC_PATH,
+        dev: DEV_PATH,
         config: DEV_CONFIG_PATH
       }
     },
@@ -124,6 +125,7 @@ if(TARGET === 'dist') {
       extensions: [ "", ".js", ".jsx", ".es6" ],
       alias: {
         src: SRC_PATH,
+        dev: DEV_PATH,
         config: DIST_CONFIG_PATH
       }
     },
@@ -189,6 +191,7 @@ if(TARGET === 'dist-browser') {
       extensions: [ "", ".js", ".jsx", ".es6" ],
       alias: {
         src: SRC_PATH,
+        dev: DEV_PATH,
         config: DIST_BROWSER_CONFIG_PATH
       }
     },
@@ -249,6 +252,7 @@ if(TARGET === 'gh-pages') {
       extensions: [ "", ".js", ".jsx", ".es6" ],
       alias: {
         src: SRC_PATH,
+        dev: DEV_PATH,
         config: GH_PAGES_CONFIG_PATH
       }
     },
