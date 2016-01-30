@@ -45,7 +45,7 @@ const
   DIST_BROWSER_CONFIG_PATH  = path.resolve(CONFIG_PATH, DIST_BROWSER_CONFIG),
   GH_PAGES_CONFIG_PATH      = path.resolve(CONFIG_PATH, GH_PAGES_CONFIG),
 
-  TARGET                    = process.env.npm_lifecycle_event;
+  TARGET                    = process.env.TARGET || process.env.npm_lifecycle_event;
 
 const ALIAS = (function(alias = {}) {
   for(let key in aliases) {
@@ -58,6 +58,7 @@ const ALIAS = (function(alias = {}) {
 if(TARGET === 'start') {
   module.exports = {
     resolve: {
+      root: ROOT_PATH,
       extensions: [ "", ".js", ".jsx", ".es6" ],
       alias: merge(true, ALIAS, {
         config: DEV_CONFIG_PATH,
@@ -131,6 +132,7 @@ if(TARGET === 'start') {
 if(TARGET === 'dist') {
   module.exports = {
     resolve: {
+      root: ROOT_PATH,
       extensions: [ "", ".js", ".jsx", ".es6" ],
       alias: merge(true, ALIAS, {
         config: DIST_CONFIG_PATH,
@@ -195,6 +197,7 @@ if(TARGET === 'dist') {
 if(TARGET === 'dist-browser') {
   module.exports = {
     resolve: {
+      root: ROOT_PATH,
       extensions: [ "", ".js", ".jsx", ".es6" ],
       alias: merge(true, ALIAS, {
         config: DIST_BROWSER_CONFIG_PATH,
@@ -254,6 +257,7 @@ if(TARGET === 'dist-browser') {
 if(TARGET === 'gh-pages') {
   module.exports = {
     resolve: {
+      root: ROOT_PATH,
       extensions: [ "", ".js", ".jsx", ".es6" ],
       alias: merge(true, ALIAS, {
         config: GH_PAGES_CONFIG_PATH,
