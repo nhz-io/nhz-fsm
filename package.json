@@ -25,7 +25,8 @@
   ],
   "main": "dist/nhz-fsm.js",
   "scripts": {
-    "test": "npm run-script lint-webpack-config && echo \"Error: no test specified\" && exit 1",
+    "test": "npm run-script lint-webpack-config && jest --no-cache",
+    "coverage": "npm run-script lint-webpack-config && jest --coverage --no-cache",    
     "lint-webpack-config": "node node_modules/eslint/bin/eslint.js webpack.config.babel.js",
     "start": "npm run-script lint-webpack-config && node node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "dist": "npm run-script lint-webpack-config node node_modules/webpack/bin/webpack.js",
