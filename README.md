@@ -1,4 +1,8 @@
-# nhz-fsm [![Build Status][travis-image]][travis-url] [![NPM][npm-image]][npm-url]
+# nhz-fsm
+
+[![Build Status][travis-image]][travis-url]
+[![Coverage Status](https://coveralls.io/repos/github/nhz-io/nhz-fsm/badge.svg?branch=master)](https://coveralls.io/github/nhz-io/nhz-fsm?branch=master)
+[![NPM][npm-image]][npm-url]
 
 ## nhz-fsm
 
