@@ -40,6 +40,34 @@
       "react"
     ]
   },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/config/jest-preprocessor.js",
+    "testPathDirs": [
+      "<rootDir>/src",
+      "<rootDir>/dev",
+      "<rootDir>/config"
+    ],
+    "testFileExtensions": [
+      "js",
+      "es6",
+      "jsx"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "es6",
+      "jsx"
+    ],
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react",
+      "<rootDir>/node_modules/react-dom",
+      "<rootDir>/node_modules/react-addons-test-utils",
+      "<rootDir>/node_modules/fbjs"
+    ]
+  },
+  "jest-webpack-alias": {
+    "configFile": "webpack.config.babel.js"
+  },
   "license": "MIT",
   "devDependencies": {
     "alt": "^0.18.1",
