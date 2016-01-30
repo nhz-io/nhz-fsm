@@ -18,8 +18,8 @@ var
   GENERATOR_DIST            = 'nhz-fsm-generator',
   TEMPLATE                  = 'template.html',
   NODE_MODULES              = 'node_modules',
-  HOST                      = 'localhost',
-  PORT                      = 9000,
+  HOST                      = process.env.WEBPACK_HOST || 'localhost',
+  PORT                      = process.env.WEBPACK_PORT || 9000,
 
   DEV_CONFIG                = 'dev.es6',
   DIST_CONFIG               = 'dist.es6',
