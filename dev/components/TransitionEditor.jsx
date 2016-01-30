@@ -1,4 +1,5 @@
 import React from 'react';
+const { PropTypes } = React;
 import Base from './Base.jsx';
 import Paper from 'material-ui/lib/paper';
 import InitialStateList from 'dev/components/transition-editor/InitialStateList.jsx';
