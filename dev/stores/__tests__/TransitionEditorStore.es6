@@ -1,26 +1,23 @@
 jest.dontMock('../TransitionEditorStore.es6');
-jest.dontMock('alt-transition-editor-actions');
-
 import Alt from 'alt';
-import AltTestingUtils from 'alt/utils/AltTestingUtils';
-
-const TransitionEditorActions = require('alt-transition-editor-actions').default;
-const TransitionEditorStore = require('../TransitionEditorStore').default;
-
-let alt, actions, callback, wrappedStore, unwrappedStore;
-
-beforeEach(function(){
-  alt = new Alt();
-  alt.dispatcher = { register: jest.genMockFunction() };
-  actions = alt.createActions(TransitionEditorActions);
-  wrappedStore = alt.CreateStore(TransitionEditorStore, 'TransitionEditorStore', actions);
-  unwrappedStore = wrappedStore.TransitionEditorStore;
-  callback = alt.dispatcher.register.mock.calls[0][0];
-});
+const TransitionEditorStore = require('../TransitionEditorStore.es6').default;
+let alt, store, actions,callback, updateAction;
 
 describe('TransitionEditorStore', function() {
-  it('listens for update action', function() {
-    alt.dispatcher.dispatch(actions.UPDATE, {test:true});
-    expect(wrappedPetStore.getState().test).toBe(true);
+  beforeEach(function() {
+    alt = new Alt();
+    alt.dispatcher.register = jest.genMockFunction();
+    actions = alt.generateActions('update');
+    store = alt.createStore(TransitionEditorStore, 'TransitionEditorStore', actions);
+    callback = alt.dispatcher.register.mock.calls[0][0];
+  });
+
+  it('registers a callback with the dispatcher', function() {
+    expect(alt.dispatcher.register.mock.calls.length).toBe(1);
+  });
+
+  it('listens for update action and sets the state', function() {
+    callback({ action:actions.UPDATE, data:{ test:true } });
+    expect(store.getState().state.test).toBe(true);
   });
 });

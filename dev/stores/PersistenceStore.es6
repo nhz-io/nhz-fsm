@@ -11,7 +11,7 @@ const save = throttle((key, value) => { store.set(key, value) }, 1000);
 export default class PersistenceStore {
   constructor(actions) {
     this.match = null;
-    this.machines = store.get(config.stateMachinesStoreKey) || {};
+    this.machines = store.get(config.stateMachinesStoreKey) || {};    
 
     this.bindListeners({
       handleAdd: actions.ADD,

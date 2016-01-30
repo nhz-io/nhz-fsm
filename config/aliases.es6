@@ -9,7 +9,7 @@ export default {
   'ui-machines-list'                 : 'dev/components/MachinesList.jsx',
 
   // JSX
-  'jsx-base'                         : 'dev/components/Base',
+  'jsx-base'                         : 'dev/components/Base.jsx',
   'jsx-selectable-container-enhance' : 'dev/components/SelectableContainerEnhance.jsx',
 
   // ALT
@@ -18,6 +18,9 @@ export default {
 
   'alt-state-machine-store'          : 'dev/stores/StateMachineStore.es6',
   'alt-state-machine-actions'        : 'dev/actions/StateMachineActions.es6',
+
+  'alt-transition-editor-store'      : 'dev/stores/TransitionEditorStore.es6',
+  'alt-transition-editor-actions'    : 'dev/actions/TransitionEditorActions.es6',
 
   // CONFIG
   'config-aliases'                   : 'config/aliases.es6',

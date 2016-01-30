@@ -1,2 +1,2 @@
-//jest.dontMock('../App.jsx');
-//require('../App.jsx');
+jest.dontMock('../App.jsx');
+const App = require('../App.jsx').default;
