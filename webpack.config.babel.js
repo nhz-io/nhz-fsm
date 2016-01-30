@@ -54,9 +54,71 @@ const ALIAS = (function(alias = {}) {
   return alias;
 })();
 
+let config = { // dist is default target
+  resolve: {
+    root: ROOT_PATH,
+    extensions: [ "", ".js", ".jsx", ".es6" ],
+    alias: merge(true, ALIAS, {
+      config: DIST_CONFIG_PATH,
+    }),
+  },
+
+  externals: (function(externals = {}) {
+    for(let key in pkg.dependencies) { externals[key] = key };
+    return externals;
+  }()),
+
+  entry: (function(entry = {}) {
+    entry[pkg.name] = entry[pkg.name + '.min'] = FSM_PATH;
+    entry[GENERATOR_DIST] = entry[GENERATOR_DIST + '.min'] = GENERATOR_PATH;
+    return entry;
+  }()),
+
+  output: {
+    path: DIST_PATH,
+    filename: "[name].js",
+    libraryTarget: 'commonjs2',
+    library: true,
+  },
+
+  module: {
+    preLoaders: [
+      {
+        test: /\.(js|es6|jsx)$/,
+        loader: 'eslint-loader',
+        include: [ SRC_PATH, CONFIG_PATH ],
+        exclude: NODE_MODULES_PATH,
+      },
+    ],
+
+    loaders: [
+      {
+        test: /\.(js|es6|jsx)$/,
+        loader: 'babel',
+        include: [ SRC_PATH, CONFIG_PATH ],
+        exclude: NODE_MODULES_PATH,
+      },
+    ],
+  },
+
+  plugins: [
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      minimize: true,
+      include: /\.min\.js$/,
+      mangle: {
+        except: ['$super', '$', 'exports', 'require'],
+      },
+    }),
+  ],
+
+  eslint: {
+    configFile: '.eslintrc',
+  },
+}
 
 if(TARGET === 'start') {
-  module.exports = {
+  config = {
     resolve: {
       root: ROOT_PATH,
       extensions: [ "", ".js", ".jsx", ".es6" ],
@@ -127,75 +189,11 @@ if(TARGET === 'start') {
       configFile: '.eslintrc',
     },
   }
-}
 
-if(TARGET === 'dist') {
-  module.exports = {
-    resolve: {
-      root: ROOT_PATH,
-      extensions: [ "", ".js", ".jsx", ".es6" ],
-      alias: merge(true, ALIAS, {
-        config: DIST_CONFIG_PATH,
-      }),
-    },
-
-    externals: (function(externals = {}) {
-      for(let key in pkg.dependencies) { externals[key] = key };
-      return externals;
-    }()),
-
-    entry: (function(entry = {}) {
-      entry[pkg.name] = entry[pkg.name + '.min'] = FSM_PATH;
-      entry[GENERATOR_DIST] = entry[GENERATOR_DIST + '.min'] = GENERATOR_PATH;
-      return entry;
-    }()),
-
-    output: {
-      path: DIST_PATH,
-      filename: "[name].js",
-      libraryTarget: 'commonjs2',
-      library: true,
-    },
-
-    module: {
-      preLoaders: [
-        {
-          test: /\.(js|es6|jsx)$/,
-          loader: 'eslint-loader',
-          include: [ SRC_PATH, CONFIG_PATH ],
-          exclude: NODE_MODULES_PATH,
-        },
-      ],
-
-      loaders: [
-        {
-          test: /\.(js|es6|jsx)$/,
-          loader: 'babel',
-          include: [ SRC_PATH, CONFIG_PATH ],
-          exclude: NODE_MODULES_PATH,
-        },
-      ],
-    },
-
-    plugins: [
-      new webpack.optimize.DedupePlugin(),
-      new webpack.optimize.UglifyJsPlugin({
-        minimize: true,
-        include: /\.min\.js$/,
-        mangle: {
-            except: ['$super', '$', 'exports', 'require'],
-        },
-      }),
-    ],
-
-    eslint: {
-      configFile: '.eslintrc',
-    },
-  }
 }
 
 if(TARGET === 'dist-browser') {
-  module.exports = {
+  config = {
     resolve: {
       root: ROOT_PATH,
       extensions: [ "", ".js", ".jsx", ".es6" ],
@@ -253,9 +251,8 @@ if(TARGET === 'dist-browser') {
   }
 }
 
-
 if(TARGET === 'gh-pages') {
-  module.exports = {
+  config = {
     resolve: {
       root: ROOT_PATH,
       extensions: [ "", ".js", ".jsx", ".es6" ],
@@ -323,3 +320,5 @@ if(TARGET === 'gh-pages') {
     },
   }
 }
+
+module.exports = config;
