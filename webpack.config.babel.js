@@ -1,11 +1,12 @@
-var path = require('path');
-import aliases from './config/aliases.es6';
-var pkg = require('./package.json');
-var webpack = require('webpack');
-var HtmlwebpackPlugin = require('html-webpack-plugin');
-var merge = require('merge');
+import path from 'path';
+import pkg from './package.json';
+import webpack from 'webpack';
+import HtmlwebpackPlugin from 'html-webpack-plugin';
+import merge from 'merge';
 
-var
+import aliases from './config/aliases.es6';
+
+const
   SRC                       = 'src',
   DEV                       = 'dev',
   GH_PAGES                  = 'gh-pages',
@@ -47,7 +48,7 @@ var
   TARGET                    = process.env.npm_lifecycle_event;
 
 const ALIAS = (function(alias = {}) {
-  for(var key in aliases) {
+  for(let key in aliases) {
     alias[key] = path.resolve(ROOT_PATH, aliases[key]);
   };
   return alias;
@@ -59,7 +60,7 @@ if(TARGET === 'start') {
     resolve: {
       extensions: [ "", ".js", ".jsx", ".es6" ],
       alias: merge(true, ALIAS, {
-        config: DEV_CONFIG_PATH
+        config: DEV_CONFIG_PATH,
       }),
     },
 
@@ -69,7 +70,7 @@ if(TARGET === 'start') {
 
     output: {
       path: DIST_PATH,
-      filename: pkg.name + '.js'
+      filename: pkg.name + '.js',
     },
 
     module: {
@@ -78,28 +79,28 @@ if(TARGET === 'start') {
           test: /\.(js|es6|jsx)$/,
           loader: 'eslint-loader',
           include: [ SRC_PATH, DEV_PATH, CONFIG_PATH ],
-          exclude: NODE_MODULES_PATH
+          exclude: NODE_MODULES_PATH,
         },
       ],
       loaders: [
         {
           test: /\.(js|es6|jsx)$/,
           loaders: ['react-hot', 'babel'],
-          include: [ SRC_PATH, DEV_PATH, CONFIG_PATH ]
+          include: [ SRC_PATH, DEV_PATH, CONFIG_PATH ],
         },
         {
           test: /.*\.(gif|png|jpe?g|woff|ttf|svg|eot|json)(\?.+)?$/i,
           loaders: [
-            'file?hash=sha512&digest=hex&name=[hash].[ext]'
+            'file?hash=sha512&digest=hex&name=[hash].[ext]',
           ],
-          include: [ SRC_PATH, DEV_PATH, NODE_MODULES_PATH ]
+          include: [ SRC_PATH, DEV_PATH, NODE_MODULES_PATH ],
         },
         {
           test: /\.scss$/,
           loaders: [ 'style', 'css', 'sass' ],
-          include: [ SRC_PATH, DEV_PATH, NODE_MODULES_PATH ]
-        }
-      ]
+          include: [ SRC_PATH, DEV_PATH, NODE_MODULES_PATH ],
+        },
+      ],
     },
 
     devServer: {
@@ -109,7 +110,7 @@ if(TARGET === 'start') {
       inline: true,
       progress: true,
       host: HOST,
-      port: PORT
+      port: PORT,
     },
 
     plugins: [
@@ -117,13 +118,13 @@ if(TARGET === 'start') {
       new HtmlwebpackPlugin({
         title: pkg.description + ' ' + pkg.version,
         script: pkg.name + '.js',
-        template: DEV_TEMPLATE
-      })
+        template: DEV_TEMPLATE,
+      }),
     ],
 
     eslint: {
-      configFile: '.eslintrc'
-    }
+      configFile: '.eslintrc',
+    },
   }
 }
 
@@ -132,7 +133,7 @@ if(TARGET === 'dist') {
     resolve: {
       extensions: [ "", ".js", ".jsx", ".es6" ],
       alias: merge(true, ALIAS, {
-        config: DIST_CONFIG_PATH
+        config: DIST_CONFIG_PATH,
       }),
     },
 
@@ -151,7 +152,7 @@ if(TARGET === 'dist') {
       path: DIST_PATH,
       filename: "[name].js",
       libraryTarget: 'commonjs2',
-      library: true
+      library: true,
     },
 
     module: {
@@ -160,7 +161,7 @@ if(TARGET === 'dist') {
           test: /\.(js|es6|jsx)$/,
           loader: 'eslint-loader',
           include: [ SRC_PATH, CONFIG_PATH ],
-          exclude: NODE_MODULES_PATH
+          exclude: NODE_MODULES_PATH,
         },
       ],
 
@@ -169,9 +170,9 @@ if(TARGET === 'dist') {
           test: /\.(js|es6|jsx)$/,
           loader: 'babel',
           include: [ SRC_PATH, CONFIG_PATH ],
-          exclude: NODE_MODULES_PATH
-        }
-      ]
+          exclude: NODE_MODULES_PATH,
+        },
+      ],
     },
 
     plugins: [
@@ -180,14 +181,14 @@ if(TARGET === 'dist') {
         minimize: true,
         include: /\.min\.js$/,
         mangle: {
-            except: ['$super', '$', 'exports', 'require']
-        }
-      })
+            except: ['$super', '$', 'exports', 'require'],
+        },
+      }),
     ],
 
     eslint: {
-      configFile: '.eslintrc'
-    }
+      configFile: '.eslintrc',
+    },
   }
 }
 
@@ -196,7 +197,7 @@ if(TARGET === 'dist-browser') {
     resolve: {
       extensions: [ "", ".js", ".jsx", ".es6" ],
       alias: merge(true, ALIAS, {
-        config: DIST_BROWSER_CONFIG_PATH
+        config: DIST_BROWSER_CONFIG_PATH,
       }),
     },
 
@@ -218,7 +219,7 @@ if(TARGET === 'dist-browser') {
           test: /\.(js|es6|jsx)$/,
           loader: 'eslint-loader',
           include: [ SRC_PATH, CONFIG_PATH ],
-          exclude: NODE_MODULES_PATH
+          exclude: NODE_MODULES_PATH,
         },
       ],
 
@@ -227,9 +228,9 @@ if(TARGET === 'dist-browser') {
           test: /\.(js|es6|jsx)$/,
           loader: 'babel',
           include: [ SRC_PATH, CONFIG_PATH ],
-          exclude: NODE_MODULES_PATH
-        }
-      ]
+          exclude: NODE_MODULES_PATH,
+        },
+      ],
     },
 
     plugins: [
@@ -238,14 +239,14 @@ if(TARGET === 'dist-browser') {
         minimize: true,
         include: /\.min\.js$/,
         mangle: {
-            except: ['$super', '$', 'exports', 'require']
-        }
-      })
+            except: ['$super', '$', 'exports', 'require'],
+        },
+      }),
     ],
 
     eslint: {
-      configFile: '.eslintrc'
-    }
+      configFile: '.eslintrc',
+    },
   }
 }
 
@@ -255,7 +256,7 @@ if(TARGET === 'gh-pages') {
     resolve: {
       extensions: [ "", ".js", ".jsx", ".es6" ],
       alias: merge(true, ALIAS, {
-        config: GH_PAGES_CONFIG_PATH
+        config: GH_PAGES_CONFIG_PATH,
       }),
     },
 
@@ -263,7 +264,7 @@ if(TARGET === 'gh-pages') {
 
     output: {
       path: GH_PAGES_PATH,
-      filename: pkg.name + ".js"
+      filename: pkg.name + ".js",
     },
 
     module: {
@@ -272,7 +273,7 @@ if(TARGET === 'gh-pages') {
           test: /\.(js|es6|jsx)$/,
           loader: 'eslint-loader',
           include: [ SRC_PATH, DEV_PATH, CONFIG_PATH ],
-          exclude: NODE_MODULES_PATH
+          exclude: NODE_MODULES_PATH,
         },
       ],
 
@@ -281,40 +282,40 @@ if(TARGET === 'gh-pages') {
           test: /\.(js|es6|jsx)$/,
           loaders: ['babel'],
           include: [ SRC_PATH, DEV_PATH, CONFIG_PATH ],
-          exclude: NODE_MODULES_PATH
+          exclude: NODE_MODULES_PATH,
         },
         {
           test: /.*\.(gif|png|jpe?g|woff|ttf|svg|eot|json)(\?.+)?$/i,
           loaders: [
-            'file?hash=sha512&digest=hex&name=[hash].[ext]'
+            'file?hash=sha512&digest=hex&name=[hash].[ext]',
           ],
-          include: [ SRC_PATH, DEV_PATH, path.resolve(ROOT_PATH, NODE_MODULES_PATH) ]
+          include: [ SRC_PATH, DEV_PATH, path.resolve(ROOT_PATH, NODE_MODULES_PATH) ],
         },
         {
           test: /\.scss$/,
           loaders: [ 'style', 'css', 'sass' ],
-          include: [ SRC_PATH, DEV_PATH, path.resolve(ROOT_PATH, NODE_MODULES_PATH) ]
-        }
-      ]
+          include: [ SRC_PATH, DEV_PATH, path.resolve(ROOT_PATH, NODE_MODULES_PATH) ],
+        },
+      ],
     },
 
     plugins: [
       new HtmlwebpackPlugin({
         title: pkg.description + ' ' + pkg.version,
         script: pkg.name + ".js",
-        template: GH_PAGES_TEMPLATE
+        template: GH_PAGES_TEMPLATE,
       }),
       new webpack.optimize.DedupePlugin(),
       new webpack.optimize.UglifyJsPlugin({
         minimize: true,
         mangle: {
-            except: ['$super', '$', 'exports', 'require']
-        }
-      })
+            except: ['$super', '$', 'exports', 'require'],
+        },
+      }),
     ],
 
     eslint: {
-      configFile: '.eslintrc'
-    }
+      configFile: '.eslintrc',
+    },
   }
 }
