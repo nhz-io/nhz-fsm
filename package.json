@@ -25,11 +25,12 @@
   ],
   "main": "dist/nhz-fsm.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "dist": "node node_modules/webpack/bin/webpack.js",
-    "dist-browser": "node node_modules/webpack/bin/webpack.js",
-    "gh-pages": "node node_modules/webpack/bin/webpack.js"
+    "test": "npm run-script lint-webpack-config && echo \"Error: no test specified\" && exit 1",
+    "lint-webpack-config": "node node_modules/eslint/bin/eslint.js webpack.config.babel.js",
+    "start": "npm run-script lint-webpack-config && node node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "dist": "npm run-script lint-webpack-config node node_modules/webpack/bin/webpack.js",
+    "dist-browser": "npm run-script lint-webpack-config node node_modules/webpack/bin/webpack.js",
+    "gh-pages": "npm run-script lint-webpack-config node node_modules/webpack/bin/webpack.js"
   },
   "babel": {
     "presets": [
