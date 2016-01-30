@@ -57,8 +57,8 @@ window.stateMachineStore = stateMachineStore;
 
 import StateMachineComponent from './StateMachineComponent.jsx';
 
-import FSM from 'src/StateMachine.es6';
-import FSMGenerator from 'src/Generator.es6';
+import FSM from 'fsm-state-machine';
+import FSMGenerator from 'fsm-state-machine-generator';
 window.FSM = FSM;
 window.FSMGenerator = FSMGenerator;
 

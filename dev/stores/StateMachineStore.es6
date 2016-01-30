@@ -5,7 +5,7 @@ import uuid from 'uuid';
 import filter from 'filter-object';
 import merge from 'merge';
 import validator from 'validator';
-import Generator from 'src/Generator.es6';
+import Generator from 'fsm-state-machine-generator';
 
 export default class StateMachineStore {
   constructor(actions) {

@@ -4,6 +4,10 @@ import Paper from 'material-ui/lib/paper';
 import InitialStateList from 'dev/components/transition-editor/InitialStateList.jsx';
 import EventList from 'dev/components/transition-editor/EventList.jsx';
 import FinalStateList from 'dev/components/transition-editor/FinalStateList.jsx';
+import Toolbar from 'material-ui/lib/toolbar/toolbar';
+import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
+import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
+import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
 
 export default class TransitionEditor extends Base {
   static propTypes = {
@@ -34,6 +38,11 @@ export default class TransitionEditor extends Base {
     return(
       <Paper {...props}>
         <Paper>
+          <Toolbar>
+            <ToolbarGroup float="right">
+              <ToolbarTitle text="Initial State" />
+            </ToolbarGroup>
+          </Toolbar>
           <InitialStateList
             selected={state.selectedInitialState}
             states={state.initialStates}

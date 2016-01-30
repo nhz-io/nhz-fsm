@@ -1,7 +1,7 @@
 import ListItem from 'material-ui/lib/lists/list-item';
 import React from 'react';
 const { Component, PropTypes } = React;
-import SelectableList from 'dev/components/SelectableList';
+import SelectableList from 'ui-selectable-list';
 
 export default class InitialStateList extends Component {
 

@@ -8,8 +8,9 @@ import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
 import MemoryIcon from 'material-ui/lib/svg-icons/hardware/memory';
 import Tabs from 'material-ui/lib/tabs/tabs';
 import Tab from 'material-ui/lib/tabs/tab';
-import InitialStateList from './components/InitialStateList.jsx';
-
+import InitialStateList from './components/transition-editor/InitialStateList.jsx';
+import EventList from './components/transition-editor/EventList.jsx';
+import FinalStateList from './components/transition-editor/FinalStateList.jsx';
 
 export default class StateMachineComponent extends Base {
   constructor(props) {
@@ -47,9 +48,9 @@ export default class StateMachineComponent extends Base {
         <Tabs style={{margin:5}}>
           <Tab label="Transitions">
             <div className='columns-container'>
-              <Paper><InitialStateList state='foo' states={['foo', 'bar', 'bot', 'net']} requestChange={(a,b) => console.log("FOOBAR", a, b)}/></Paper>
-              <Paper>B</Paper>
-              <Paper>C</Paper>
+              <Paper><InitialStateList selected='foo' states={['foo', 'bar', 'bot', 'net']} requestChange={(a,b) => console.log("FOOBAR", a, b)}/></Paper>
+              <Paper><EventList selected='foo' events={['foo', 'bar', 'bot', 'net']} mask={['bar', 'bot']}/></Paper>
+              <Paper><FinalStateList selected='foo' states={['foo', 'bar', 'bot', 'net']} mask={['net']} requestChange={(a,b) => console.log("FOOBAR", a, b)}/></Paper>
             </div>
           </Tab>
           <Tab label="State Chart">
