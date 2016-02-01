@@ -3,6 +3,7 @@
 [![Build Status][travis-image]][travis-url]
 [![Coverage Status](https://coveralls.io/repos/github/nhz-io/nhz-fsm/badge.svg?branch=master)](https://coveralls.io/github/nhz-io/nhz-fsm?branch=master)
 [![NPM][npm-image]][npm-url]
+[![bitHound Code](https://www.bithound.io/github/nhz-io/nhz-fsm/badges/code.svg)](https://www.bithound.io/github/nhz-io/nhz-fsm)
 
 ## nhz-fsm
 
