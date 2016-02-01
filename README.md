@@ -3,6 +3,9 @@
 [![Build Status][travis-image]][travis-url]
 [![Coverage Status](https://coveralls.io/repos/github/nhz-io/nhz-fsm/badge.svg?branch=master)](https://coveralls.io/github/nhz-io/nhz-fsm?branch=master)
 [![NPM][npm-image]][npm-url]
+[![bitHound Overall Score](https://www.bithound.io/github/nhz-io/nhz-fsm/badges/score.svg)](https://www.bithound.io/github/nhz-io/nhz-fsm)
+[![bitHound Dependencies](https://www.bithound.io/github/nhz-io/nhz-fsm/badges/dependencies.svg)](https://www.bithound.io/github/nhz-io/nhz-fsm/master/dependencies/npm)
+[![bitHound Dev Dependencies](https://www.bithound.io/github/nhz-io/nhz-fsm/badges/devDependencies.svg)](https://www.bithound.io/github/nhz-io/nhz-fsm/master/dependencies/npm)
 [![bitHound Code](https://www.bithound.io/github/nhz-io/nhz-fsm/badges/code.svg)](https://www.bithound.io/github/nhz-io/nhz-fsm)
 
 ## nhz-fsm
