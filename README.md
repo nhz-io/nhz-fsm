@@ -8,7 +8,7 @@
 [![bitHound Dev Dependencies](https://www.bithound.io/github/nhz-io/nhz-fsm/badges/devDependencies.svg)](https://www.bithound.io/github/nhz-io/nhz-fsm/master/dependencies/npm)
 [![bitHound Code](https://www.bithound.io/github/nhz-io/nhz-fsm/badges/code.svg)](https://www.bithound.io/github/nhz-io/nhz-fsm)
 
-## nhz-fsm
+## Finite State Machine
 
 ## Install
 ```
